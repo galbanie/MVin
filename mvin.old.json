@@ -1,0 +1,41 @@
+{
+    "vehicle" : {
+        "map" : {
+            "make" : "",
+            "model" : "",
+            "year" : "",
+            "engine" : {
+                "liters" : "",
+                "cc": "",
+                "cid": "",
+                "cylinder" : "",
+                "block" : "",
+                "boreInch" : "",
+                "boreMetric" : "",
+                "strokeInch" : "",
+                "strokeMetric" : "",
+                "display" : ""
+            },
+            "mfrCode" : "",
+            "engineCode" : ""
+        },
+        "files" : [
+            {
+                "path" : "",
+                "sheets" : []
+            }
+        ]
+    },
+    "vin" : {
+        "map" : {
+            "vin" : "",
+            "mfrCode" : ""
+        },
+        "files" : [
+            {
+                "path" : "",
+                "sheets" : []
+            }
+        ]
+    }
+}

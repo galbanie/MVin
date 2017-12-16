@@ -1,0 +1,35 @@
+{
+    "files" : [
+        {
+            "path" : "xlsx/Coverage.xlsx",
+            "sheets" : [1],
+            "map" : {
+                "make" : "Make",
+                "model" : "Model",
+                "year" : "Year",
+                "engine" : {
+                    "liters" : "EngineLiters",
+                    "cc": "EngineCC",
+                    "cid": "EngineCID",
+                    "cylinder" : "EngineCylinder",
+                    "block" : "EngineBlock",
+                    "boreInch" : "EngBoreInch",
+                    "boreMetric" : "EngBoreMetric",
+                    "strokeInch" : "EngStrokeInch",
+                    "strokeMetric" : "EngStrokeMetric",
+                    "display" : "Engine (Display Only)"
+                },
+                "mfrCode" : "MfrBodyCode",
+                "engineCode" : "EngineDesignation"
+            }
+        },
+        {
+            "path" : "",
+            "sheets" : [],
+            "map" : {
+                "vin" : "",
+                "mfrCode" : ""
+            }
+        }
+    ]
+}

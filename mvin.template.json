@@ -1,0 +1,35 @@
+{
+    "files" : [
+        {
+            "path" : "",
+            "sheets" : [],
+            "map" : {
+                "make" : "",
+                "model" : "",
+                "year" : "",
+                "engine" : {
+                    "liters" : "",
+                    "cc": "",
+                    "cid": "",
+                    "cylinder" : "",
+                    "block" : "",
+                    "boreInch" : "",
+                    "boreMetric" : "",
+                    "strokeInch" : "",
+                    "strokeMetric" : "",
+                    "display" : ""
+                },
+                "mfrCode" : "",
+                "engineCode" : ""
+            }
+        },
+        {
+            "path" : "",
+            "sheets" : [],
+            "map" : {
+                "vin" : "",
+                "mfrCode" : ""
+            }
+        }
+    ]
+}
