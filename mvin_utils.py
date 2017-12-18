@@ -44,7 +44,9 @@ def populate(mvin_data):
                 else:
                     continue
         for sheet in sheets:
+            print('Sheet : ' + str(sheet.name))
             for row in range(1, sheet.nrows):
+                print('Row number : ' + str(row))
                 # vehicle_record = file['map'].fromkeys(file['map'].keys())
                 vehicle_record = {
                     "make": None,
@@ -61,6 +63,7 @@ def populate(mvin_data):
                 for key, value in file['map'].items():
                     record = value.fromkeys(value.keys())
                     for col in range(0, sheet.ncols):
+                        print(str(col_name) + ' - ' + str(col_value))
                         col_name = sheet.cell(0, col).value
                         col_value = sheet.cell(row, col).value
                         if col_name in value.values():
@@ -72,16 +75,16 @@ def populate(mvin_data):
                                     #     mfr = mfr[:3] + '.' + mfr[-3:]
                                     record['mfrCode'] = tables['mfrCode'].get_or_create(code=record['mfrCode'])[0]
                                     tables['vin'].get_or_create(defaults=record)
-                                    pprint(record)
+                                    # pprint(record)
                                 else:
                                     vehicle_record[key] = tables[key].get_or_create(defaults=record)[0]
-                                    pprint(record)
-                                break
+                                    # pprint(record)
+                                continue
                         else:
                             continue
                 if None not in vehicle_record.values():
                     tables['vehicle'].get_or_create(defaults=vehicle_record)
-                    pprint(vehicle_record)
+                    # pprint(vehicle_record)
                     continue
 
 
