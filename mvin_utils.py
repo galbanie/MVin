@@ -25,26 +25,64 @@ def ordered(obj):
 
 def populate(mvin_data):
     for file in mvin_data['files']:
-        pprint(file)
-
-# def populate(mapping, xlsx_paths, sheet_names=None):
-#     if sheet_names is None:
-#         sheet_names = []
-#     for xlsx in xlsx_paths:
-#         book = xlrd.open_workbook(xlsx)
-#         sheets = []
-#         if sheet_names is None:
-#             sheets = book.sheets()
-#         else:
-#             for n in sheet_names:
-#                 sheets.append(book.sheet_by_name(str(n)))
-#         for sheet in sheets:
-#             data = []
-#             for row in range(1, sheet.nrows):
-#                 values = {}
-#                 for col in range(0, sheet.ncols):
-#                     values[sheet.cell(0, col).value] = sheet.cell(row, col).value
-#                 data.append(values)
+        book = xlrd.open_workbook(file['path'])
+        sheets = []
+        if not file['sheets']:
+            sheets = book.sheets()
+        else:
+            for sh in file['sheets']:
+                if isinstance(sh, int):
+                    try:
+                        sheets.append(book.sheet_by_index(sh))
+                    except IndexError:
+                        continue
+                elif isinstance(sh, str):
+                    try:
+                        sheets.append(book.sheet_by_name(sh))
+                    except xlrd.biffh.XLRDError:
+                        continue
+                else:
+                    continue
+        for sheet in sheets:
+            for row in range(1, sheet.nrows):
+                # vehicle_record = file['map'].fromkeys(file['map'].keys())
+                vehicle_record = {
+                    "make": None,
+                    "model": None,
+                    "year": None,
+                    "engine": None,
+                    "mfrCode": None,
+                    "engineCode": None
+                }
+                vin_record = {
+                    "vin": None,
+                    "mfrCode": None
+                }
+                for key, value in file['map'].items():
+                    record = value.fromkeys(value.keys())
+                    for col in range(0, sheet.ncols):
+                        col_name = sheet.cell(0, col).value
+                        col_value = sheet.cell(row, col).value
+                        if col_name in value.values():
+                            record[list(value.keys())[list(value.values()).index(col_name)]] = str(col_value)
+                            if None not in record.values():
+                                if key == 'vin':
+                                    # mfr = record['mfrCode']
+                                    # if '.' not in mfr:
+                                    #     mfr = mfr[:3] + '.' + mfr[-3:]
+                                    record['mfrCode'] = tables['mfrCode'].get_or_create(code=record['mfrCode'])[0]
+                                    tables['vin'].get_or_create(defaults=record)
+                                    pprint(record)
+                                else:
+                                    vehicle_record[key] = tables[key].get_or_create(defaults=record)[0]
+                                    pprint(record)
+                                break
+                        else:
+                            continue
+                if None not in vehicle_record.values():
+                    tables['vehicle'].get_or_create(defaults=vehicle_record)
+                    pprint(vehicle_record)
+                    continue
 
 
 # def populate_database_coverage():
@@ -104,14 +142,15 @@ def populate(mvin_data):
 
 
 if __name__ == '__main__':
-    # create_tables()
+    create_tables()
     # populate_database_coverage()
     # for year in Years.select():
     #     print(year.year)
     # drop_tables()
-    # with open('mvin.template.json') as json_file:
-    #     data = json.load(json_file)
-    #     pprint(data)
     with open('mvin.test.json') as test_file:
         populate(json.load(test_file))
-        # pprint(validate(json.load(test_file)))
+    # mfr = '107025'
+    # if '.' not in str(mfr):
+    #     # mfr = mfr[0:3] + '.' + mfr[3:6]
+    #     mfr = mfr[:3] + '.' + mfr[-3:]
+    #     pprint(mfr)

@@ -38,7 +38,7 @@
             "sheets" : [],
             "map" : {
                 "vin" : {
-                    "vin" : "VINMASTER",
+                    "vin" : ["WHC","VIN"],
                     "mfrCode" : "CHASSBM"
                 }
 

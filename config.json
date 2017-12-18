@@ -1,0 +1,10 @@
+{
+    "database" : {
+        "driver" : "Sqlite",
+        "database" : "mvin.db",
+        "host" : "",
+        "port" : "",
+        "user" : "",
+        "password" : ""
+    }
+}

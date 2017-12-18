@@ -13,7 +13,7 @@ class MfrCodes(BaseModel):
 
 
 class Vin(BaseModel):
-    vin = CharField(max_length=17, unique=True,primary_key=True)
+    vin = CharField(max_length=17, unique=True, primary_key=True)
     mfrCode = ForeignKeyField(MfrCodes, related_name='mfrs')
 
 
@@ -26,11 +26,11 @@ class Models(BaseModel):
 
 
 class Years(BaseModel):
-    year = CharField(max_length=4, unique=True,primary_key=True)
+    year = CharField(max_length=4, unique=True, primary_key=True)
 
 
 class EngineCodes(BaseModel):
-    code = CharField(max_length=7, unique=True,primary_key=True)
+    code = CharField(max_length=7, unique=True, primary_key=True)
 
 
 class EngineBase(BaseModel):
@@ -55,7 +55,19 @@ class Vehicles(BaseModel):
     mfrCode = ForeignKeyField(MfrCodes, related_name='mfrCodes')
 
     class Meta:
-        primary_key = CompositeKey('make','model','year','engine','engineCode','mfrCode')
+        primary_key = CompositeKey('make', 'model', 'year', 'engine', 'engineCode', 'mfrCode')
+
+
+tables = {
+    'make': Makes,
+    'model': Models,
+    'year': Years,
+    'engineCode': EngineCodes,
+    'mfrCode': MfrCodes,
+    'engine': EngineBase,
+    'vin': Vin,
+    'vehicle': Vehicles
+}
 
 
 def create_tables():
