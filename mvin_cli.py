@@ -1,8 +1,21 @@
+import os
 from clize import run
 from mvin import *
 from pprint import pprint
 
 VERSION = "0.1"
+
+# Retrieve current working directory (`cwd`)
+cwd = os.getcwd()
+
+
+# print(cwd)
+
+# Change directory
+# os.chdir("/path/to/your/folder")
+
+# List all files and directories in current directory
+# os.listdir('.')
 
 
 def decode(*vin):

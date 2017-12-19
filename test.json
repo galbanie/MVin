@@ -1,0 +1,37 @@
+{
+    "files" : [
+        {
+            "path" : "xlsx/Coverage.xlsx",
+            "sheets" : ["Suspension Strut Mount"],
+            "map" : {
+                "make" : {
+                    "make" : "Make"
+                },
+                "model" : {
+                    "model" : "Model"
+                },
+                "year" : {
+                    "year" : "Year"
+                },
+                "engine" : {
+                    "liters" : "EngineLiters",
+                    "cc": "EngineCC",
+                    "cid": "EngineCID",
+                    "cylinder" : "EngineCylinder",
+                    "block" : "EngineBlock",
+                    "boreInch" : "EngBoreInch",
+                    "boreMetric" : "EngBoreMetric",
+                    "strokeInch" : "EngStrokeInch",
+                    "strokeMetric" : "EngStrokeMetric",
+                    "display" : "Engine (Display Only)"
+                },
+                "mfrCode" : {
+                    "code" : "MfrBodyCode"
+                },
+                "engineCode" : {
+                    "code" : "EngineDesignation"
+                }
+            }
+        }
+    ]
+}
